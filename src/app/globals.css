@@ -1,0 +1,215 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   TechRunners — neon pixel-art design system
+   Palette lifted from the game banner: cyan neon logo, night-city navy,
+   magenta/purple glow, road-line yellow.
+   ========================================================================== */
+
+@theme inline {
+  /* surfaces */
+  --color-ink: #05070f;
+  --color-ink-2: #0a0e1c;
+  --color-panel: #0d1426;
+  --color-panel-2: #111b33;
+  --color-line: #23345c;
+
+  /* neon accents */
+  --color-neon: #34e2e8; /* primary cyan */
+  --color-neon-dim: #1c8f96;
+  --color-magenta: #ff3fa4;
+  --color-purple: #8b6cff;
+  --color-lime: #9dff5b;
+  --color-warn: #ffd23f;
+  --color-danger: #ff5470;
+
+  /* text */
+  --color-text: #dcecff;
+  --color-muted: #8296bd;
+
+  /* fonts (wired from next/font in layout.tsx) */
+  --font-pixel: var(--font-press-start), "Courier New", monospace;
+  --font-body: var(--font-vt323), "Courier New", monospace;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  background-color: var(--color-ink);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 20px;
+  line-height: 1.4;
+  letter-spacing: 0.3px;
+  -webkit-font-smoothing: none;
+  /* layered neon glow + subtle grid over the deep-space navy */
+  background-image:
+    radial-gradient(1100px 600px at 50% -10%, rgba(52, 226, 232, 0.14), transparent 60%),
+    radial-gradient(900px 500px at 100% 0%, rgba(255, 63, 164, 0.1), transparent 55%),
+    radial-gradient(900px 700px at 0% 100%, rgba(139, 108, 255, 0.1), transparent 55%),
+    linear-gradient(180deg, #05070f 0%, #070b16 55%, #05070f 100%);
+  background-attachment: fixed;
+}
+
+/* keep pixel art crisp */
+img.pixelated,
+.pixelated {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+/* ------- Typography helpers ------- */
+.font-pixel {
+  font-family: var(--font-pixel);
+  letter-spacing: 0;
+  line-height: 1.5;
+}
+
+.neon {
+  color: var(--color-neon);
+  text-shadow:
+    0 0 4px rgba(52, 226, 232, 0.9),
+    0 0 12px rgba(52, 226, 232, 0.55),
+    0 0 26px rgba(52, 226, 232, 0.35);
+}
+.neon-magenta {
+  color: var(--color-magenta);
+  text-shadow:
+    0 0 4px rgba(255, 63, 164, 0.9),
+    0 0 14px rgba(255, 63, 164, 0.5);
+}
+.neon-purple {
+  color: var(--color-purple);
+  text-shadow: 0 0 4px rgba(139, 108, 255, 0.9), 0 0 14px rgba(139, 108, 255, 0.5);
+}
+
+/* ------- Pixel border / panel ------- */
+/* A chunky stepped border made from stacked box-shadows — no border-radius,
+   reads as a pixel-art frame. */
+.pixel-frame {
+  position: relative;
+  background: linear-gradient(180deg, var(--color-panel-2), var(--color-panel));
+  border: 2px solid var(--color-neon);
+  box-shadow:
+    0 0 0 2px var(--color-ink),
+    0 0 0 4px rgba(52, 226, 232, 0.25),
+    0 0 22px rgba(52, 226, 232, 0.18),
+    inset 0 0 26px rgba(6, 12, 26, 0.9);
+  image-rendering: pixelated;
+}
+.pixel-frame::before {
+  /* clipped corner notches for the arcade-panel look */
+  content: "";
+  position: absolute;
+  inset: -2px;
+  pointer-events: none;
+  background:
+    linear-gradient(-45deg, var(--color-ink) 6px, transparent 0) bottom right,
+    linear-gradient(45deg, var(--color-ink) 6px, transparent 0) bottom left,
+    linear-gradient(135deg, var(--color-ink) 6px, transparent 0) top right,
+    linear-gradient(225deg, var(--color-ink) 6px, transparent 0) top left;
+  background-size: 12px 12px;
+  background-repeat: no-repeat;
+}
+
+.pixel-frame-magenta {
+  border-color: var(--color-magenta);
+  box-shadow:
+    0 0 0 2px var(--color-ink),
+    0 0 0 4px rgba(255, 63, 164, 0.25),
+    0 0 22px rgba(255, 63, 164, 0.18),
+    inset 0 0 26px rgba(6, 12, 26, 0.9);
+}
+
+/* ------- Scanline / CRT overlay ------- */
+.scanlines::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0px,
+    rgba(0, 0, 0, 0) 2px,
+    rgba(0, 0, 0, 0.16) 3px,
+    rgba(0, 0, 0, 0.16) 4px
+  );
+  mix-blend-mode: multiply;
+}
+
+/* ------- Animations ------- */
+@keyframes flicker {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
+  20%, 24%, 55% { opacity: 0.72; }
+}
+.flicker { animation: flicker 4.5s infinite steps(1); }
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.float-slow { animation: float-slow 5s ease-in-out infinite; }
+
+@keyframes scan-move {
+  from { background-position: 0 0; }
+  to { background-position: 0 100vh; }
+}
+
+@keyframes blink {
+  0%, 60% { opacity: 1; }
+  61%, 100% { opacity: 0.15; }
+}
+.blink { animation: blink 1.1s steps(1) infinite; }
+
+/* ------- Form controls (base look, refined in components) ------- */
+.pixel-input {
+  width: 100%;
+  background: #060a15;
+  color: var(--color-text);
+  border: 2px solid var(--color-line);
+  padding: 10px 12px;
+  font-family: var(--font-body);
+  font-size: 19px;
+  outline: none;
+  transition: border-color 0.12s, box-shadow 0.12s;
+}
+.pixel-input::placeholder { color: #55688c; }
+.pixel-input:focus {
+  border-color: var(--color-neon);
+  box-shadow: 0 0 0 2px rgba(52, 226, 232, 0.25), inset 0 0 12px rgba(52, 226, 232, 0.08);
+}
+select.pixel-input {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--color-neon) 50%),
+    linear-gradient(135deg, var(--color-neon) 50%, transparent 50%);
+  background-position: calc(100% - 18px) 55%, calc(100% - 12px) 55%;
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+  padding-right: 34px;
+  cursor: pointer;
+}
+
+/* ------- Scrollbar ------- */
+::-webkit-scrollbar { width: 12px; height: 12px; }
+::-webkit-scrollbar-track { background: #060a15; }
+::-webkit-scrollbar-thumb {
+  background: var(--color-neon-dim);
+  border: 2px solid #060a15;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--color-neon); }
+
+/* selection */
+::selection { background: var(--color-magenta); color: #0a0e1c; }
