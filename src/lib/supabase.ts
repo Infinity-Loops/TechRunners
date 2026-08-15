@@ -1,5 +1,6 @@
 import "server-only";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
+import type { Database } from "./database.types";
 
 /**
  * Server-only Supabase client using the SERVICE ROLE key.
@@ -9,9 +10,9 @@ import { createClient, type SupabaseClient } from "@supabase/supabase-js";
  * All report reads/writes and storage access go through here.
  */
 
-let cached: SupabaseClient | null = null;
+let cached: SupabaseClient<Database> | null = null;
 
-export function getSupabaseAdmin(): SupabaseClient {
+export function getSupabaseAdmin(): SupabaseClient<Database> {
   if (cached) return cached;
 
   const url = process.env.SUPABASE_URL;
@@ -23,7 +24,7 @@ export function getSupabaseAdmin(): SupabaseClient {
     );
   }
 
-  cached = createClient(url, key, {
+  cached = createClient<Database>(url, key, {
     auth: { persistSession: false, autoRefreshToken: false },
   });
   return cached;
