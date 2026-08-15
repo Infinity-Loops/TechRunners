@@ -6,8 +6,9 @@ import { isSupabaseConfigured } from "@/lib/supabase";
 import { ReportForm } from "./ReportForm";
 
 export const metadata: Metadata = {
-  title: "Playtest Feedback — TechRunners",
+  title: "Playtest Feedback",
   description: "Tell us how your run went. Attach screenshots and clips.",
+  alternates: { canonical: "/report" },
 };
 
 export default function ReportPage() {

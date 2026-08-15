@@ -1,5 +1,12 @@
 import type { Metadata } from "next";
 import { Press_Start_2P, VT323 } from "next/font/google";
+import {
+  SITE_URL,
+  SITE_NAME,
+  SITE_TAGLINE,
+  SITE_DESCRIPTION,
+  SITE_KEYWORDS,
+} from "@/lib/site";
 import "./globals.css";
 
 const pressStart = Press_Start_2P({
@@ -17,21 +24,47 @@ const vt323 = VT323({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.SITE_URL || "http://localhost:3000"
-  ),
-  title: "TechRunners — Playtest",
-  description:
-    "Join the TechRunners playtest on Android, iOS and Steam. Play the build and share your feedback with screenshots and clips to help shape the launch.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: `${SITE_NAME} — ${SITE_TAGLINE}`,
+    template: `%s — ${SITE_NAME}`,
+  },
+  description: SITE_DESCRIPTION,
+  applicationName: SITE_NAME,
+  keywords: SITE_KEYWORDS,
+  authors: [{ name: SITE_NAME }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
   icons: {
     icon: "/assets/favicon.png",
+    apple: "/assets/favicon.png",
   },
   openGraph: {
-    title: "TechRunners — Playtest",
-    description:
-      "Join the TechRunners playtest and help shape the game before launch.",
-    images: ["/assets/banner.png"],
+    type: "website",
+    siteName: SITE_NAME,
+    url: SITE_URL,
+    title: `${SITE_NAME} — ${SITE_TAGLINE}`,
+    description: SITE_DESCRIPTION,
+    locale: "en_US",
+    // og:image is provided automatically by app/opengraph-image.tsx
   },
+  twitter: {
+    card: "summary_large_image",
+    title: `${SITE_NAME} — ${SITE_TAGLINE}`,
+    description: SITE_DESCRIPTION,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  category: "games",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { CityBackground } from "@/components/CityBackground";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -57,6 +58,10 @@ const TAG_ACCENT: Record<Platform["accent"], string> = {
   lime: "text-lime border-lime",
   primary: "text-neon border-neon",
   purple: "text-purple border-purple",
+};
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
 };
 
 const ACCENT_RING: Record<Platform["accent"], string> = {
