@@ -1,12 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { TextInput } from "@/components/form";
 import { pixelButtonClass } from "@/components/ui";
 
 export function LoginForm({ next }: { next: string }) {
-  const router = useRouter();
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -23,14 +21,16 @@ export function LoginForm({ next }: { next: string }) {
       });
       const data = await res.json();
       if (res.ok && data.ok) {
-        router.replace(data.next || "/admin");
-        router.refresh();
-      } else {
-        setError(data.error || "Login failed.");
+        // Full-page navigation (not the History API) so the new session cookie
+        // is used on a fresh server render — avoids client-router SecurityError
+        // in sandboxed/embedded browser contexts.
+        window.location.assign(data.next || "/admin");
+        return;
       }
+      setError(data.error || "Login failed.");
+      setLoading(false);
     } catch {
       setError("Network error. Try again.");
-    } finally {
       setLoading(false);
     }
   }
