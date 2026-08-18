@@ -25,10 +25,10 @@ export default function HomePage() {
       {/* fade the bottom of the banner into the page background */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-2/5"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-3/5"
         style={{
           background:
-            "linear-gradient(to bottom, transparent, var(--color-ink) 92%)",
+            "linear-gradient(to bottom, transparent 0%, rgba(5,7,15,0.6) 55%, var(--color-ink) 78%)",
         }}
       />
     </div>
