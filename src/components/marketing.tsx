@@ -28,7 +28,7 @@ export function PageHero({
       >
         {eyebrow}
       </span>
-      <h1 className="font-pixel mx-auto mt-6 max-w-3xl text-xl leading-relaxed neon sm:text-3xl">
+      <h1 className="font-pixel mx-auto mt-6 max-w-3xl text-lg leading-relaxed neon [overflow-wrap:anywhere] sm:text-2xl md:text-3xl">
         {title}
       </h1>
       {subtitle && (
@@ -95,7 +95,9 @@ export function SectionHeading({
           {eyebrow}
         </p>
       )}
-      <h2 className="font-pixel mt-3 text-lg neon sm:text-xl">{title}</h2>
+      <h2 className="font-pixel mt-3 text-base neon [overflow-wrap:anywhere] sm:text-lg md:text-xl">
+        {title}
+      </h2>
       {subtitle && <p className="mt-3 text-lg text-muted">{subtitle}</p>}
     </div>
   );
