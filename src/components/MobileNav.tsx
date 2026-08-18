@@ -12,14 +12,6 @@ export function MobileNav({ active }: { active?: string }) {
 
   useEffect(() => setMounted(true), []);
 
-  // lock scroll while the menu is open
-  useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [open]);
-
   return (
     <div className="md:hidden">
       <button
