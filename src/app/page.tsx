@@ -12,26 +12,22 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   // Full-bleed banner sitting flush under the navbar, edge to edge.
+  // The bottom fades to transparent via an alpha mask so it dissolves into the
+  // page background instead of being covered by a solid color.
   const hero = (
-    <div className="relative w-full">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="/assets/banner.webp"
-        alt="TechRunners"
-        width={920}
-        height={430}
-        className="pixelated block h-auto w-full"
-      />
-      {/* fade the bottom of the banner into the page background */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-3/5"
-        style={{
-          background:
-            "linear-gradient(to bottom, transparent 0%, rgba(5,7,15,0.6) 55%, var(--color-ink) 78%)",
-        }}
-      />
-    </div>
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src="/assets/banner.webp"
+      alt="TechRunners"
+      width={920}
+      height={430}
+      className="pixelated block h-auto w-full"
+      style={{
+        WebkitMaskImage:
+          "linear-gradient(to bottom, #000 86%, transparent 100%)",
+        maskImage: "linear-gradient(to bottom, #000 86%, transparent 100%)",
+      }}
+    />
   );
 
   return (
