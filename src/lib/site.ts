@@ -54,8 +54,9 @@ export const LINKS = {
 export const NAV = [
   { href: "/", label: "Home" },
   { href: "/features", label: "Features" },
-  { href: "/about", label: "About" },
+  { href: "/leaderboard", label: "Leaderboard" },
   { href: "/community", label: "Community" },
+  { href: "/about", label: "About" },
   { href: "/support", label: "Support" },
 ] as const;
 
