@@ -23,6 +23,8 @@ export function SiteLayout({
     <>
       <CityBackground />
       <SiteHeader active={active} />
+      {/* spacer for the fixed header */}
+      <div className="h-14 flex-none" aria-hidden />
       {hero && <div className="w-full flex-none overflow-hidden">{hero}</div>}
       <main
         className={cn(

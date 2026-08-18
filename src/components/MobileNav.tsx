@@ -50,7 +50,7 @@ export function MobileNav({ active }: { active?: string }) {
         mounted &&
         createPortal(
           <div
-            className="fixed inset-x-0 bottom-0 top-[57px] z-[70] flex flex-col gap-2 overflow-y-auto border-t-2 border-line px-4 py-6"
+            className="fixed inset-x-0 bottom-0 top-14 z-[70] flex flex-col gap-2 overflow-y-auto border-t-2 border-line px-4 py-6"
             style={{ backgroundColor: "var(--color-ink)" }}
           >
             {NAV.map((item) => (

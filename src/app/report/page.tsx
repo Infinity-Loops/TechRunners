@@ -18,6 +18,7 @@ export default function ReportPage() {
     <>
       <CityBackground />
       <SiteHeader active="report" />
+      <div className="h-14 flex-none" aria-hidden />
 
       <main className="mx-auto w-full max-w-3xl flex-1 px-4 pb-16">
         <div className="py-8 text-center">
