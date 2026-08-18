@@ -13,14 +13,25 @@ export const metadata: Metadata = {
 export default function HomePage() {
   // Full-bleed banner sitting flush under the navbar, edge to edge.
   const hero = (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
-      src="/assets/banner.webp"
-      alt="TechRunners"
-      width={920}
-      height={430}
-      className="pixelated block h-auto w-full"
-    />
+    <div className="relative w-full">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/assets/banner.webp"
+        alt="TechRunners"
+        width={920}
+        height={430}
+        className="pixelated block h-auto w-full"
+      />
+      {/* fade the bottom of the banner into the page background */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-2/5"
+        style={{
+          background:
+            "linear-gradient(to bottom, transparent, var(--color-ink) 92%)",
+        }}
+      />
+    </div>
   );
 
   return (
