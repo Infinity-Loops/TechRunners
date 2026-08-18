@@ -4,7 +4,8 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { assertAdmin } from "@/lib/session";
 import { deleteReport, updateReport } from "@/lib/reports";
-import { STATUS_VALUES } from "@/lib/constants";
+import { deleteContactMessage, updateContactStatus } from "@/lib/contacts";
+import { STATUS_VALUES, CONTACT_STATUS_VALUES } from "@/lib/constants";
 
 export async function updateStatusAction(formData: FormData) {
   await assertAdmin();
@@ -32,4 +33,22 @@ export async function deleteReportAction(formData: FormData) {
   await deleteReport(id);
   revalidatePath("/admin");
   redirect("/admin");
+}
+
+export async function updateMessageStatusAction(formData: FormData) {
+  await assertAdmin();
+  const id = String(formData.get("id") ?? "");
+  const status = String(formData.get("status") ?? "");
+  if (!id || !(CONTACT_STATUS_VALUES as readonly string[]).includes(status))
+    return;
+  await updateContactStatus(id, status);
+  revalidatePath("/admin/messages");
+}
+
+export async function deleteMessageAction(formData: FormData) {
+  await assertAdmin();
+  const id = String(formData.get("id") ?? "");
+  if (!id) return;
+  await deleteContactMessage(id);
+  revalidatePath("/admin/messages");
 }

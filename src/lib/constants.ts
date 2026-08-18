@@ -70,6 +70,24 @@ export const STATUSES = [
   { value: "duplicate", label: "Duplicate", tone: "muted" },
 ] as const satisfies readonly Option[];
 
+export const CONTACT_CATEGORIES = [
+  { value: "general", label: "General question", tone: "neon" },
+  { value: "support", label: "Support / account", tone: "purple" },
+  { value: "bug", label: "Bug / technical", tone: "danger" },
+  { value: "business", label: "Business / press", tone: "warn" },
+  { value: "feedback", label: "Feedback / idea", tone: "lime" },
+] as const satisfies readonly Option[];
+
+export const CONTACT_STATUSES = [
+  { value: "new", label: "New", tone: "neon" },
+  { value: "read", label: "Read", tone: "purple" },
+  { value: "replied", label: "Replied", tone: "lime" },
+  { value: "archived", label: "Archived", tone: "muted" },
+] as const satisfies readonly Option[];
+
+export const CONTACT_CATEGORY_VALUES = CONTACT_CATEGORIES.map((o) => o.value);
+export const CONTACT_STATUS_VALUES = CONTACT_STATUSES.map((o) => o.value);
+
 // Convenience value unions
 export const PLATFORM_VALUES = PLATFORMS.map((o) => o.value);
 export const PROBLEM_AREA_VALUES = PROBLEM_AREAS.map((o) => o.value);

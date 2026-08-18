@@ -5,6 +5,7 @@ import {
   SEVERITY_VALUES,
   FREQUENCY_VALUES,
   NETWORK_VALUES,
+  CONTACT_CATEGORY_VALUES,
 } from "./constants";
 
 const optionalText = (max: number) =>
@@ -59,3 +60,38 @@ export const reportSchema = z.object({
 });
 
 export type ReportInput = z.infer<typeof reportSchema>;
+
+/** Contact / support message form. */
+export const contactSchema = z.object({
+  name: z
+    .string()
+    .trim()
+    .max(120)
+    .optional()
+    .transform((v) => (v && v.length > 0 ? v : null)),
+  email: z
+    .string()
+    .trim()
+    .min(1, "Email is required.")
+    .max(200)
+    .refine((v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v), {
+      message: "Enter a valid email.",
+    }),
+  category: z
+    .enum(CONTACT_CATEGORY_VALUES as [string, ...string[]])
+    .optional()
+    .or(z.literal("").transform(() => undefined)),
+  subject: z
+    .string()
+    .trim()
+    .max(160)
+    .optional()
+    .transform((v) => (v && v.length > 0 ? v : null)),
+  message: z
+    .string()
+    .trim()
+    .min(10, "Please write a bit more (min 10 chars).")
+    .max(5000),
+});
+
+export type ContactInput = z.infer<typeof contactSchema>;

@@ -14,6 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
+      contact_messages: {
+        Row: {
+          category: string | null
+          created_at: string
+          email: string
+          id: string
+          message: string
+          name: string | null
+          status: string
+          subject: string | null
+          user_agent: string | null
+        }
+        Insert: {
+          category?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          message: string
+          name?: string | null
+          status?: string
+          subject?: string | null
+          user_agent?: string | null
+        }
+        Update: {
+          category?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          message?: string
+          name?: string | null
+          status?: string
+          subject?: string | null
+          user_agent?: string | null
+        }
+        Relationships: []
+      }
       reports: {
         Row: {
           actual_result: string | null

@@ -80,7 +80,7 @@ export default async function OpengraphImage() {
             letterSpacing: 1,
           }}
         >
-          PLAYTEST IS LIVE
+          FUTURISTIC MOBILE MMO
         </div>
 
         <div

@@ -88,11 +88,11 @@ export default async function AdminDashboard({
 
   return (
     <>
-      <AdminHeader />
+      <AdminHeader active="/admin" />
       <main className="mx-auto w-full max-w-7xl flex-1 px-4 pb-16 pt-6">
         <h1 className="font-pixel flex items-center gap-3 text-base neon sm:text-lg">
           <GameIcon name="chart" size={28} />
-          Playtest Feedback
+          Bug Reports
         </h1>
 
         {/* stats */}

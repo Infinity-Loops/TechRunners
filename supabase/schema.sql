@@ -60,3 +60,23 @@ on conflict (id) do update
 
 -- No storage policies are added on purpose: uploads and signed-URL reads are
 -- performed server-side with the service-role key, so the bucket stays private.
+
+-- ---------------------------------------------------------------------------
+-- Contact / support messages (from the /contact form)
+-- ---------------------------------------------------------------------------
+create table if not exists public.contact_messages (
+  id            uuid primary key default gen_random_uuid(),
+  created_at    timestamptz not null default now(),
+  status        text not null default 'new',
+  name          text,
+  email         text not null,
+  subject       text,
+  category      text,
+  message       text not null,
+  user_agent    text
+);
+
+create index if not exists contact_messages_created_at_idx on public.contact_messages (created_at desc);
+create index if not exists contact_messages_status_idx     on public.contact_messages (status);
+
+alter table public.contact_messages enable row level security;
