@@ -35,10 +35,7 @@ export const metadata: Metadata = {
   authors: [{ name: SITE_NAME }],
   creator: SITE_NAME,
   publisher: SITE_NAME,
-  icons: {
-    icon: "/assets/favicon.png",
-    apple: "/assets/favicon.png",
-  },
+  // Favicon + apple icon come from app/icon.png and app/apple-icon.png.
   openGraph: {
     type: "website",
     siteName: SITE_NAME,
