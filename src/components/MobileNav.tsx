@@ -26,9 +26,30 @@ export function MobileNav({ active }: { active?: string }) {
         onClick={() => setOpen((v) => !v)}
         aria-label={open ? "Close menu" : "Open menu"}
         aria-expanded={open}
-        className="font-pixel flex h-9 w-9 items-center justify-center border-2 border-neon text-neon"
+        className="flex h-9 w-9 items-center justify-center border-2 border-neon text-neon"
       >
-        {open ? "✕" : "≡"}
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          aria-hidden
+        >
+          {open ? (
+            <>
+              <line x1="3" y1="3" x2="13" y2="13" />
+              <line x1="13" y1="3" x2="3" y2="13" />
+            </>
+          ) : (
+            <>
+              <line x1="2" y1="4" x2="14" y2="4" />
+              <line x1="2" y1="8" x2="14" y2="8" />
+              <line x1="2" y1="12" x2="14" y2="12" />
+            </>
+          )}
+        </svg>
       </button>
 
       {/* Portaled to <body> so the fixed overlay escapes the header's
