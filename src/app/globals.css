@@ -47,6 +47,7 @@ html {
 body {
   min-height: 100%;
   margin: 0;
+  overflow-x: clip; /* allow full-bleed sections without a horizontal scrollbar */
   background-color: var(--color-ink);
   color: var(--color-text);
   font-family: var(--font-body);

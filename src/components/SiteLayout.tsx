@@ -10,16 +10,20 @@ export function SiteLayout({
   active,
   className,
   width = "default",
+  hero,
 }: {
   children: ReactNode;
   active?: string;
   className?: string;
   width?: "default" | "narrow";
+  /** Full-bleed content rendered edge-to-edge between the header and main. */
+  hero?: ReactNode;
 }) {
   return (
     <>
       <CityBackground />
       <SiteHeader active={active} />
+      {hero && <div className="w-full flex-none overflow-hidden">{hero}</div>}
       <main
         className={cn(
           "mx-auto w-full flex-1 px-4 pb-20",

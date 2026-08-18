@@ -11,34 +11,26 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
+  // Full-bleed banner sitting flush under the navbar, edge to edge.
+  const hero = (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src="/assets/banner.webp"
+      alt="TechRunners"
+      width={920}
+      height={430}
+      className="pixelated block h-auto w-full"
+    />
+  );
+
   return (
-    <SiteLayout active="/">
-      {/* ------------------------------------------------------------ Hero */}
-      <section className="flex flex-col items-center pt-10 text-center sm:pt-14">
-        <span className="font-pixel mb-6 inline-flex items-center gap-2 border-2 border-magenta bg-magenta/10 px-3 py-2 text-[10px] uppercase tracking-widest text-magenta">
+    <SiteLayout active="/" hero={hero}>
+      {/* ------------------------------------------------------------ Hero copy */}
+      <section className="flex flex-col items-center pt-8 text-center">
+        <span className="font-pixel mb-5 inline-flex items-center gap-2 border-2 border-magenta bg-magenta/10 px-3 py-2 text-[10px] uppercase tracking-widest text-magenta">
           <span className="h-2 w-2 bg-magenta blink" /> Futuristic Mobile MMO
         </span>
-
-        <div className="float-slow relative w-full max-w-3xl">
-          <div
-            aria-hidden
-            className="absolute inset-0 -z-10 blur-2xl"
-            style={{
-              background:
-                "radial-gradient(closest-side, rgba(52,226,232,0.35), transparent)",
-            }}
-          />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/assets/banner.webp"
-            alt="TechRunners"
-            width={920}
-            height={430}
-            className="pixelated mx-auto w-full drop-shadow-[0_0_25px_rgba(52,226,232,0.25)]"
-          />
-        </div>
-
-        <p className="mt-6 max-w-2xl text-xl text-text/90 sm:text-2xl">
+        <p className="max-w-2xl text-xl text-text/90 sm:text-2xl">
           Real-time action, guild battles, and global competition in a neon
           city. Team up, run Haven, and rise to the top.
         </p>
