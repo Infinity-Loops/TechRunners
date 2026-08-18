@@ -6,7 +6,8 @@ import { ImageResponse } from "next/og";
 // social platforms crop to.
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = "TechRunners — Playtest on Android, iOS and Steam";
+export const alt =
+  "TechRunners — futuristic mobile MMO on Android, iOS and Steam";
 
 // Node runtime so we can read the co-located font/emblem from disk.
 // (The `new URL(..., import.meta.url)` refs let Next trace them into the bundle.)
@@ -74,7 +75,7 @@ export default async function OpengraphImage() {
         <div
           style={{
             display: "flex",
-            marginTop: 30,
+            marginTop: 26,
             fontSize: 20,
             color: "#dcecff",
             letterSpacing: 1,
@@ -86,8 +87,19 @@ export default async function OpengraphImage() {
         <div
           style={{
             display: "flex",
+            marginTop: 14,
+            fontSize: 15,
+            color: "#8296bd",
+          }}
+        >
+          Real-time PvP · Guild wars · Global leaderboards
+        </div>
+
+        <div
+          style={{
+            display: "flex",
             gap: 16,
-            marginTop: 34,
+            marginTop: 30,
           }}
         >
           {["ANDROID", "iOS", "STEAM"].map((p) => (
