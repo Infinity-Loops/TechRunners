@@ -20,7 +20,7 @@ export default async function SuccessPage({
     <>
       <CityBackground />
       <SiteHeader />
-      <div className="h-14 flex-none" aria-hidden />
+      <div className="h-[var(--header-h)] flex-none" aria-hidden />
 
       <main className="mx-auto flex w-full max-w-2xl flex-1 flex-col items-center justify-center px-4 py-16 text-center">
         <GameIcon name="trophy" size={72} className="float-slow" alt="Success" />

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Press_Start_2P, VT323 } from "next/font/google";
 import {
   SITE_URL,
@@ -22,6 +22,12 @@ const vt323 = VT323({
   subsets: ["latin"],
   display: "swap",
 });
+
+export const viewport: Viewport = {
+  // draw into the notch / safe areas so the fixed header can cover them
+  viewportFit: "cover",
+  themeColor: "#05070f",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

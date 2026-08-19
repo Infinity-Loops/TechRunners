@@ -9,7 +9,7 @@ export default function NotFound() {
     <>
       <CityBackground />
       <SiteHeader />
-      <div className="h-14 flex-none" aria-hidden />
+      <div className="h-[var(--header-h)] flex-none" aria-hidden />
 
       <main className="mx-auto flex w-full max-w-2xl flex-1 flex-col items-center justify-center px-4 py-20 text-center">
         <Emblem size={72} className="float-slow" />

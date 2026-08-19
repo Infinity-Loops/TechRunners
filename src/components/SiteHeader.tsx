@@ -6,8 +6,11 @@ import { MobileNav } from "./MobileNav";
 
 export function SiteHeader({ active }: { active?: string }) {
   return (
-    <header className="fixed inset-x-0 top-0 z-40 h-14 border-b border-line/70 bg-ink/85 backdrop-blur-sm">
-      <div className="mx-auto flex h-full max-w-6xl items-center justify-between gap-3 px-3 sm:px-4">
+    <header
+      className="fixed inset-x-0 top-0 z-40 border-b border-line/70 bg-ink/85 backdrop-blur-sm"
+      style={{ paddingTop: "env(safe-area-inset-top, 0px)" }}
+    >
+      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-3 px-3 sm:px-4">
         <Link href="/" className="group flex min-w-0 items-center gap-2">
           <Emblem size={34} className="transition-transform group-hover:scale-110" />
           <span className="font-pixel hidden text-xs neon group-hover:brightness-125 min-[420px]:inline sm:text-sm">
